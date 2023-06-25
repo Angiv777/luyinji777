@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 32
+
+    defaultConfig {
+        applicationId "com.maple.recordwav"
+        minSdkVersion 19
+        targetSdkVersion 32
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true // 混淆代码
+            shrinkResources true // 移除无用资源，如果开启，必须混淆开启
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(':recorder')
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.2'
+    //implementation 'ch.acra:acra:4.11'// 崩溃上报 5.5.0
+    implementation 'com.github.shaoshuai904:XStyleDialog:2.0.5'
+    implementation 'com.github.shaoshuai904:XPopups:1.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
+}
+repositories {
+    mavenCentral()
+}
